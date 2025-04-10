@@ -1,10 +1,12 @@
 // server/server.js
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const db = require('./config/db');
-const apiRoutes = require('./routes/api');
-const errorHandler = require('./middlewares/errorHandler');
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import db from './config/db.js'; // Ensure this file is updated to use ES module syntax as well
+import apiRoutes from './routes/api.js'; // Same for this route file
+import errorHandler from './middlewares/errorHandler.js'; // Same for this file
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;

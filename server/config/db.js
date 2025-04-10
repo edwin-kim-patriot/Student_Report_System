@@ -1,6 +1,7 @@
 // server/config/db.js
-const { Pool } = require('pg');
-require('dotenv').config();
+import pkg from 'pg';
+const { Pool } = pkg;
+import 'dotenv/config'; // Import dotenv using ES module syntax
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -32,8 +33,4 @@ const query = async (text, params) => {
   }
 };
 
-module.exports = {
-  connect,
-  close,
-  query
-};
+export { connect, close, query };

@@ -1,8 +1,7 @@
-// server/controllers/reports.js
-const Report = require('../models/Report');
-const { validationResult } = require('express-validator');
+import Report from '../models/Report';
+import { validationResult } from 'express-validator';
 
-exports.createReport = async (req, res, next) => {
+export const createReport = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -14,18 +13,18 @@ exports.createReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getAllReports = async (req, res, next) => {
+export const getAllReports = async (req, res, next) => {
   try {
     const reports = await Report.findAll();
     res.json(reports);
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getReportById = async (req, res, next) => {
+export const getReportById = async (req, res, next) => {
   try {
     const report = await Report.findById(req.params.id);
     if (!report) {
@@ -35,27 +34,27 @@ exports.getReportById = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getReportsByStudent = async (req, res, next) => {
+export const getReportsByStudent = async (req, res, next) => {
   try {
     const reports = await Report.findByStudent(req.params.studentId);
     res.json(reports);
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getReportsByGrade = async (req, res, next) => {
+export const getReportsByGrade = async (req, res, next) => {
   try {
     const reports = await Report.findByGrade(req.params.grade);
     res.json(reports);
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.updateReport = async (req, res, next) => {
+export const updateReport = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -70,9 +69,9 @@ exports.updateReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.deleteReport = async (req, res, next) => {
+export const deleteReport = async (req, res, next) => {
   try {
     const deleted = await Report.delete(req.params.id);
     if (!deleted) {
@@ -82,9 +81,9 @@ exports.deleteReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getGradeAnalysis = async (req, res, next) => {
+export const getGradeAnalysis = async (req, res, next) => {
   try {
     const analysis = await Report.getGradeAnalysis(req.params.grade);
     if (!analysis) {
@@ -94,4 +93,4 @@ exports.getGradeAnalysis = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;

@@ -1,5 +1,4 @@
-// server/models/Student.js
-const db = require('../config/db');
+import db from '../config/db';
 
 class Student {
   static async create({ admission_number, name, grade, school }) {
@@ -41,4 +40,4 @@ class Student {
   }
 }
 
-module.exports = Student;
+export default Student;;

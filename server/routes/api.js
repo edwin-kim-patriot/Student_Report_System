@@ -1,12 +1,5 @@
-// server/routes/api.js
 import express from 'express';
-import {
-  createStudent,
-  getAllStudents,
-  getStudentById,
-  updateStudent,
-  deleteStudent
-} from '../controllers/students.js';
+
 import {
   createReport,
   getAllReports,
@@ -15,7 +8,7 @@ import {
   getReportsByGrade,
   updateReport,
   deleteReport,
-  getGradeAnalysis
+  getGradeAnalysis,
 } from '../controllers/reports.js';
 
 const router = express.Router();
@@ -39,4 +32,4 @@ router.delete('/reports/:id', deleteReport);
 // Analysis routes
 router.get('/analysis/grade/:grade', getGradeAnalysis);
 
-export default router;
+export default router;;

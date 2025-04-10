@@ -1,8 +1,7 @@
-// server/controllers/students.js
-const Student = require('../models/Student');
-const { validationResult } = require('express-validator');
+import Student from '../models/Student';
+import { validationResult } from 'express-validator';
 
-exports.createStudent = async (req, res, next) => {
+export const createStudent = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -14,18 +13,18 @@ exports.createStudent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getAllStudents = async (req, res, next) => {
+export const getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.findAll();
     res.json(students);
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.getStudentById = async (req, res, next) => {
+export const getStudentById = async (req, res, next) => {
   try {
     const student = await Student.findById(req.params.id);
     if (!student) {
@@ -35,9 +34,9 @@ exports.getStudentById = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.updateStudent = async (req, res, next) => {
+export const updateStudent = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -52,9 +51,9 @@ exports.updateStudent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
 
-exports.deleteStudent = async (req, res, next) => {
+export const deleteStudent = async (req, res, next) => {
   try {
     const deleted = await Student.delete(req.params.id);
     if (!deleted) {
@@ -64,4 +63,4 @@ exports.deleteStudent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};;
