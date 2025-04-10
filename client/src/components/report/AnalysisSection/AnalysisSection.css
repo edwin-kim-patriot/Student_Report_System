@@ -1,0 +1,81 @@
+/* AnalysisSection.css */
+.analysis-section {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-title {
+  color: #1a5276;
+  border-bottom: 2px solid #6CB4EE;
+  padding-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.generation-date {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.analysis-section h2 {
+  color: #1a5276;
+  margin: 20px 0 15px;
+  font-size: 1.4rem;
+}
+
+.performance-table,
+.subject-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.performance-table th,
+.subject-table th {
+  background: #1a5276;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.performance-table td,
+.subject-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.performance-table tr:last-child td,
+.subject-table tr:last-child td {
+  border-bottom: none;
+}
+
+.total-row {
+  background-color: #f0f8ff;
+  font-weight: bold;
+}
+
+.overall-performance {
+  background: #f8f9fa;
+  padding: 15px;
+  border-left: 4px solid #6CB4EE;
+  margin-top: 20px;
+}
+
+.overall-performance p {
+  margin: 8px 0;
+}
+
+@media print {
+  .analysis-section {
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+}

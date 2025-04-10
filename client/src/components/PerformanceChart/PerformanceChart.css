@@ -1,0 +1,6 @@
+/* client/src/components/PerformanceChart/PerformanceChart.css */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin: 0 auto;
+  }

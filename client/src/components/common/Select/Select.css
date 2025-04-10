@@ -1,0 +1,34 @@
+/* client/src/components/common/Select/Select.css */
+.select-group {
+    margin-bottom: 15px;
+  }
+  
+  .select-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .select-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    transition: border-color 0.3s ease;
+  }
+  
+  .select-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(108, 180, 238, 0.2);
+  }
+  
+  .error-message {
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: block;
+  }

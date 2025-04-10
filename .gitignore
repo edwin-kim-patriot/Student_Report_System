@@ -1,0 +1,67 @@
+
+### 2. `.gitignore`
+
+```gitignore
+# Node modules
+node_modules/
+.server/node_modules/
+
+# Environment variables
+.env
+.server/.env
+
+# Build directories
+dist/
+build/
+.client/dist/
+
+# Database files
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macOS
+.DS_Store
+
+# Vite cache
+.cache/
+
+# Debug files
+*.pid
+*.seed
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Local Netlify folder
+.netlify
+
+# Backup files
+*.bak

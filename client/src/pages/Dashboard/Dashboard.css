@@ -1,0 +1,83 @@
+/* client/src/pages/Dashboard/Dashboard.css */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dashboard-container h1 {
+    color: var(--primary-dark);
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .dashboard-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+  }
+  
+  .chart-card {
+    grid-column: span 2;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .stat-item {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .stat-item h3 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .stat-item p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .recent-reports {
+    grid-column: span 3;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .error {
+    color: var(--danger);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .chart-card, .recent-reports {
+      grid-column: span 1;
+    }
+  }

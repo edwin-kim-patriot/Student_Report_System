@@ -1,0 +1,48 @@
+/* ReportForm.css */
+.report-form {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-form .form-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.report-form .form-section:last-child {
+  border-bottom: none;
+}
+
+.report-form h3 {
+  color: #1a5276;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.report-form .form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.report-form .form-row > * {
+  flex: 1;
+}
+
+.report-form .form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .report-form .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

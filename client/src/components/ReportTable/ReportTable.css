@@ -1,0 +1,82 @@
+/* client/src/components/ReportTable/ReportTable.css */
+.table-container {
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .report-table th,
+  .report-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  
+  .report-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+  }
+  
+  .report-table tr:nth-child(even) {
+    background-color: var(--secondary-color);
+  }
+  
+  .report-table tr:hover {
+    background-color: rgba(108, 180, 238, 0.1);
+  }
+  
+  .performance-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .performance-badge.exceeding-expectation {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+  }
+  
+  .performance-badge.meeting-expectation {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #2980b9;
+  }
+  
+  .performance-badge.approaching-expectation {
+    background-color: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+  }
+  
+  .performance-badge.below-expectation {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .no-data {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+  }
+  
+  @media (max-width: 768px) {
+    .report-table th,
+    .report-table td {
+      padding: 8px 10px;
+    }
+  }

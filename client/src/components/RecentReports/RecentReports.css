@@ -1,0 +1,59 @@
+/* client/src/components/RecentReports/RecentReports.css */
+.recent-reports-container {
+    margin-top: 15px;
+  }
+  
+  .recent-reports-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recent-reports-table th,
+  .recent-reports-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  
+  .recent-reports-table th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+  }
+  
+  .recent-reports-table tr:hover {
+    background-color: rgba(108, 180, 238, 0.1);
+  }
+  
+  .performance-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .performance-badge.exceeding-expectation {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+  }
+  
+  .performance-badge.meeting-expectation {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #2980b9;
+  }
+  
+  .performance-badge.approaching-expectation {
+    background-color: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+  }
+  
+  .performance-badge.below-expectation {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+  }
+  
+  .no-reports {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-color);
+  }

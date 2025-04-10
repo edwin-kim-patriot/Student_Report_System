@@ -1,0 +1,63 @@
+/* client/src/pages/Settings/Settings.css */
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .settings-container h1 {
+    color: var(--primary-dark);
+    margin-bottom: 30px;
+  }
+  
+  .settings-section {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .settings-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+  }
+  
+  .settings-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+  }
+  
+  .settings-form > *:first-child {
+    flex: 1;
+  }
+  
+  .current-items h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .current-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .current-items li {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .settings-form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }

@@ -1,0 +1,131 @@
+/* ReportView.css */
+.report-view {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.school-logo img {
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.school-name {
+  color: #1a5276;
+  margin: 5px 0;
+  font-size: 1.8rem;
+}
+
+.report-title {
+  color: #2c3e50;
+  margin: 5px 0;
+  border-bottom: 2px solid #6CB4EE;
+  display: inline-block;
+  padding-bottom: 5px;
+  font-size: 1.4rem;
+}
+
+.student-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #6CB4EE;
+}
+
+.student-info h3 {
+  color: #1a5276;
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.subjects-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+.subjects-table thead tr {
+  background: linear-gradient(to right, #6CB4EE, #1a5276);
+  color: white;
+}
+
+.subjects-table th {
+  padding: 10px;
+  text-align: left;
+}
+
+.subjects-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.subjects-table .even-row {
+  background-color: #f8f9fa;
+}
+
+.report-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.remarks-section {
+  flex: 2;
+}
+
+.remarks-title {
+  font-weight: bold;
+  color: #1a5276;
+  margin-bottom: 5px;
+}
+
+.remarks-content {
+  border: 1px dashed #6CB4EE;
+  border-radius: 4px;
+  padding: 10px;
+  min-height: 50px;
+}
+
+.signature-section {
+  flex: 1;
+  text-align: right;
+}
+
+.signature-title {
+  font-weight: bold;
+  color: #1a5276;
+}
+
+.signature-line {
+  border-bottom: 1px solid #1a5276;
+  display: inline-block;
+  width: 200px;
+  margin-top: 30px;
+}
+
+@media print {
+  .report-view {
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+}
