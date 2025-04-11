@@ -70,7 +70,7 @@ export const generateStudentReportPDF = async (reportData, studentName) => {
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
     const imgWidth = 210;
-    const pageHeight = 295;
+    // Removed unused variable 'pageHeight'
     const imgHeight = canvas.height * imgWidth / canvas.width;
     
     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
