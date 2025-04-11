@@ -1,4 +1,4 @@
-import Report from '../models/Report';
+import Report from '../models/Report.js';
 import { validationResult } from 'express-validator';
 
 export const createReport = async (req, res, next) => {
@@ -13,7 +13,7 @@ export const createReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const getAllReports = async (req, res, next) => {
   try {
@@ -22,7 +22,7 @@ export const getAllReports = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const getReportById = async (req, res, next) => {
   try {
@@ -34,7 +34,7 @@ export const getReportById = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const getReportsByStudent = async (req, res, next) => {
   try {
@@ -43,7 +43,7 @@ export const getReportsByStudent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const getReportsByGrade = async (req, res, next) => {
   try {
@@ -52,7 +52,7 @@ export const getReportsByGrade = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const updateReport = async (req, res, next) => {
   try {
@@ -69,7 +69,7 @@ export const updateReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const deleteReport = async (req, res, next) => {
   try {
@@ -81,7 +81,7 @@ export const deleteReport = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};
 
 export const getGradeAnalysis = async (req, res, next) => {
   try {
@@ -93,4 +93,4 @@ export const getGradeAnalysis = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};;
+};

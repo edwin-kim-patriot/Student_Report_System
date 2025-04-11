@@ -1,3 +1,4 @@
+// File: server/routes/api.js
 import express from 'express';
 
 import {
@@ -10,6 +11,14 @@ import {
   deleteReport,
   getGradeAnalysis,
 } from '../controllers/reports.js';
+
+import {
+  createStudent,
+  getAllStudents,
+  getStudentById,
+  updateStudent,
+  deleteStudent,
+} from '../controllers/students.js';
 
 const router = express.Router();
 
@@ -32,4 +41,4 @@ router.delete('/reports/:id', deleteReport);
 // Analysis routes
 router.get('/analysis/grade/:grade', getGradeAnalysis);
 
-export default router;;
+export default router;

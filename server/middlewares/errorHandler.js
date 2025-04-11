@@ -1,5 +1,5 @@
 // server/middlewares/errorHandler.js
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   console.error(err.stack);
 
   // Default error response
