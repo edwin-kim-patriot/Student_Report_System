@@ -2,7 +2,6 @@
 import Report from '../models/Report.js';
 import { validationResult } from 'express-validator';
 
-// Create report
 export const createReport = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -13,21 +12,19 @@ export const createReport = async (req, res, next) => {
     const report = await Report.create(req.body);
     res.status(201).json(report);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get all reports
 export const getAllReports = async (req, res, next) => {
   try {
     const reports = await Report.findAll();
     res.json(reports);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get report by ID
 export const getReportById = async (req, res, next) => {
   try {
     const report = await Report.findById(req.params.id);
@@ -36,31 +33,28 @@ export const getReportById = async (req, res, next) => {
     }
     res.json(report);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get reports by student ID
 export const getReportsByStudent = async (req, res, next) => {
   try {
     const reports = await Report.findByStudent(req.params.studentId);
     res.json(reports);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get reports by grade
 export const getReportsByGrade = async (req, res, next) => {
   try {
     const reports = await Report.findByGrade(req.params.grade);
     res.json(reports);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Update report
 export const updateReport = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -74,11 +68,10 @@ export const updateReport = async (req, res, next) => {
     }
     res.json(updatedReport);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Delete report
 export const deleteReport = async (req, res, next) => {
   try {
     const deleted = await Report.delete(req.params.id);
@@ -87,11 +80,10 @@ export const deleteReport = async (req, res, next) => {
     }
     res.status(204).send();
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get grade analysis
 export const getGradeAnalysis = async (req, res, next) => {
   try {
     const analysis = await Report.getGradeAnalysis(req.params.grade);
@@ -100,11 +92,10 @@ export const getGradeAnalysis = async (req, res, next) => {
     }
     res.json(analysis);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };
 
-// Get reports by admission number
 export const getReportsByAdmissionNumber = async (req, res, next) => {
   try {
     const admissionNumber = req.params.admissionNumber;
@@ -116,6 +107,6 @@ export const getReportsByAdmissionNumber = async (req, res, next) => {
 
     res.json(reports);
   } catch (error) {
-    next(error); // Pass error to the error handler
+    next(error);
   }
 };

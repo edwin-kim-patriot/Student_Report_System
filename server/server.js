@@ -2,20 +2,20 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import db from './config/db.js'; // Ensure this file is updated to use ES module syntax as well
-import apiRoutes from './routes/api.js'; // Same for this route file
-import errorHandler from './middlewares/errorHandler.js'; // Same for this file
+import db from './config/db.js';
+import apiRoutes from './routes/api.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Database connection
+// Connect to database
 db.connect()
-  .then(() => console.log('Connected to PostgreSQL database'))
-  .catch(err => {
-    console.error('Database connection error:', err);
+  .then(() => console.log('✅ Connected to PostgreSQL database'))
+  .catch((err) => {
+    console.error('❌ Database connection error:', err);
     process.exit(1);
   });
 
@@ -27,15 +27,15 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api', apiRoutes);
 
-// Error handling middleware
+// Error handler (should always come after routes)
 app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
-// Handle shutdown
+// Graceful shutdown
 process.on('SIGINT', async () => {
   await db.close();
   process.exit(0);
