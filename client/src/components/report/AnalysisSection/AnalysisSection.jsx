@@ -1,6 +1,7 @@
 // AnalysisSection.jsx
-import React from 'react';
+
 import './AnalysisSection.css';
+import PropTypes from 'prop-types';
 
 const AnalysisSection = ({ subjectResults, overallMean, performanceLevels, totalStudents }) => {
   const getPerformanceStyle = (score) => {
@@ -107,6 +108,19 @@ const AnalysisSection = ({ subjectResults, overallMean, performanceLevels, total
       return 'B.E (Below Expectation)';
     }
   }
+};
+AnalysisSection.propTypes = {
+  subjectResults: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mean: PropTypes.number.isRequired,
+      performance: PropTypes.string.isRequired,
+      grade: PropTypes.string,
+    })
+  ).isRequired,
+  overallMean: PropTypes.number.isRequired,
+  performanceLevels: PropTypes.objectOf(PropTypes.number).isRequired,
+  totalStudents: PropTypes.number.isRequired,
 };
 
 export default AnalysisSection;

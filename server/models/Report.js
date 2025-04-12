@@ -233,7 +233,20 @@ class Report {
       if (num >= 234) return 'A.E (Approaching Expectation)';
       return 'B.E (Below Expectation)';
     }
+    
   }
+  static async findByAdmissionNumber(admissionNumber) {
+    const query = `
+      SELECT r.*
+      FROM reports r
+      INNER JOIN students s ON r.student_id = s.id
+      WHERE s.admission_number = $1
+      ORDER BY r.created_at DESC
+    `;
+    const { rows } = await db.query(query, [admissionNumber]);
+    return rows;
+  }
+
 }
 
 export default Report;;

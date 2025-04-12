@@ -1,14 +1,20 @@
-// client/src/services/pdfService.js (Enhanced)
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 export const generateStudentReportPDF = async (reportData, studentName) => {
   try {
-    // Create a temporary div to render the report
-    const element = document.createElement('div');
-    element.style.position = 'absolute';
-    element.style.left = '-9999px';
-    element.innerHTML = `
+    // Check for reusable container
+    let container = document.getElementById('pdf-render-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'pdf-render-container';
+      container.style.position = 'absolute';
+      container.style.left = '-9999px';
+      document.body.appendChild(container);
+    }
+
+    // Inject report HTML into the hidden container
+    container.innerHTML = `
       <div class="report-view printable" style="width: 800px; font-family: Arial, sans-serif; padding: 20px;">
         <div style="text-align: center; margin-bottom: 20px;">
           <h1 style="color: #1a5276; margin: 5px 0;">REHEMA JUNIOR SCHOOL</h1>
@@ -58,25 +64,38 @@ export const generateStudentReportPDF = async (reportData, studentName) => {
         </div>
       </div>
     `;
-    
-    document.body.appendChild(element);
-    
-    const canvas = await html2canvas(element.querySelector('.report-view'), {
+
+    const canvas = await html2canvas(container.querySelector('.report-view'), {
       scale: 2,
       logging: false,
       useCORS: true
     });
-    
+
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
     const imgWidth = 210;
-    // Removed unused variable 'pageHeight'
     const imgHeight = canvas.height * imgWidth / canvas.width;
-    
-    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    pdf.save(`${studentName}_Report.pdf`);
-    
-    document.body.removeChild(element);
+
+    // Handle multi-page reports
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    while (heightLeft > 0) {
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= 297;
+      if (heightLeft > 0) {
+        pdf.addPage();
+        position = 0;
+      }
+    }
+
+    const safeFileName = studentName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    pdf.save(`${safeFileName}_report.pdf`);
+
+    if (container && container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+
     return true;
   } catch (error) {
     console.error('Error generating PDF:', error);

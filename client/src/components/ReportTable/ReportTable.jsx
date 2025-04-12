@@ -1,17 +1,17 @@
-// client/src/components/ReportTable/ReportTable.jsx
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import Button from '../common/Button/Button';
 import { generateStudentReportPDF } from '../../services/pdfService';
+import ReportView from '../ReportView/ReportView';
 import './ReportTable.css';
-
-
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom/client';
 
 const ReportTable = ({ reports, students, onEdit }) => {
   const { deleteReport } = useContext(AppContext);
 
   const getStudentName = (studentId) => {
-    const student = students.find(s => s.id === studentId);
+    const student = students.find((s) => s.id === studentId);
     return student ? student.name : 'Unknown';
   };
 
@@ -22,30 +22,49 @@ const ReportTable = ({ reports, students, onEdit }) => {
   };
 
   const handleGeneratePDF = async (report) => {
-    const student = students.find(s => s.id === report.student_id);
+    const student = students.find((s) => s.id === report.student_id);
     if (!student) return;
 
-    const element = document.createElement('div');
-    element.innerHTML = `
-      <div class="report-view">
-        <!-- ReportView content will be generated here -->
-      </div>
-    `;
-    document.body.appendChild(element);
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    document.body.appendChild(container);
+
+    const root = ReactDOM.createRoot(container);
+    const fullReport = {
+      ...report,
+      studentName: student.name,
+      english: report.english,
+      kiswahili: report.kiswahili,
+      mathematics: report.mathematics,
+      science: report.science,
+      cre: report.cre,
+      socialStudies: report.socialStudies,
+      agriculture: report.agriculture,
+      preTech: report.preTech,
+      arts: report.arts,
+      remarks: report.remarks
+    };
+
+    root.render(
+      <ReportView
+        report={fullReport}
+        position={report.position || 1} // fallback
+        totalStudents={report.totalStudents || 1}
+      />
+    );
 
     try {
-      await generateStudentReportPDF(
-        element.querySelector('.report-view'),
-        student.name
-      );
+      await generateStudentReportPDF(container, student.name);
     } catch (error) {
       console.error('Error generating PDF:', error);
     } finally {
-      document.body.removeChild(element);
+      root.unmount();
+      container.remove();
     }
   };
 
-  if (reports.length === 0) {
+  if (!reports.length) {
     return <div className="no-data">No reports found</div>;
   }
 
@@ -65,7 +84,7 @@ const ReportTable = ({ reports, students, onEdit }) => {
           </tr>
         </thead>
         <tbody>
-          {reports.map(report => (
+          {reports.map((report) => (
             <tr key={report.id}>
               <td>{getStudentName(report.student_id)}</td>
               <td>Term {report.term}</td>
@@ -74,7 +93,11 @@ const ReportTable = ({ reports, students, onEdit }) => {
               <td>Grade {report.grade}</td>
               <td>{report.total_marks}/900</td>
               <td>
-                <span className={`performance-badge ${report.performance.toLowerCase().replace(' ', '-')}`}>
+                <span
+                  className={`performance-badge ${
+                    report.performance?.toLowerCase().replace(/\s+/g, '-') || 'unknown'
+                  }`}
+                >
                   {report.performance}
                 </span>
               </td>
@@ -107,6 +130,40 @@ const ReportTable = ({ reports, students, onEdit }) => {
       </table>
     </div>
   );
+};
+
+ReportTable.propTypes = {
+  reports: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      student_id: PropTypes.number.isRequired,
+      term: PropTypes.number.isRequired,
+      exam: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      grade: PropTypes.string.isRequired,
+      total_marks: PropTypes.number.isRequired,
+      performance: PropTypes.string.isRequired,
+      english: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      kiswahili: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      mathematics: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      science: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      cre: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      socialStudies: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      agriculture: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      preTech: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      arts: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      remarks: PropTypes.string,
+      position: PropTypes.number,
+      totalStudents: PropTypes.number,
+    })
+  ).isRequired,
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 export default ReportTable;

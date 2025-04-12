@@ -1,6 +1,7 @@
 // client/src/components/common/Button/Button.jsx
-import React from 'react';
+
 import './Button.css';
+import PropTypes from 'prop-types';
 
 const Button = ({ children, variant = 'primary', onClick, type = 'button', disabled = false }) => {
   return (
@@ -13,6 +14,13 @@ const Button = ({ children, variant = 'primary', onClick, type = 'button', disab
       {children}
     </button>
   );
+};
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;

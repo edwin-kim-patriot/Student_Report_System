@@ -1,6 +1,7 @@
 // client/src/components/RecentReports/RecentReports.jsx
-import React from 'react';
+
 import './RecentReports.css';
+import PropTypes from 'prop-types';
 
 const RecentReports = ({ reports, students }) => {
   const getStudentName = (studentId) => {
@@ -46,6 +47,25 @@ const RecentReports = ({ reports, students }) => {
       </table>
     </div>
   );
+};
+RecentReports.propTypes = {
+  reports: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      student_id: PropTypes.number.isRequired,
+      term: PropTypes.number.isRequired,
+      grade: PropTypes.string.isRequired,
+      total_marks: PropTypes.number.isRequired,
+      performance: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default RecentReports;

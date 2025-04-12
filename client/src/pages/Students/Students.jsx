@@ -1,5 +1,4 @@
-// client/src/pages/Students/Students.jsx
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import StudentTable from '../../components/StudentTable/StudentTable';
 import StudentForm from '../../components/StudentForm/StudentForm';
@@ -11,6 +10,11 @@ const Students = () => {
   const { students, loading, error } = useContext(AppContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
+
+  const handleAdd = () => {
+    setCurrentStudent(null);
+    setIsModalOpen(true);
+  };
 
   const handleEdit = (student) => {
     setCurrentStudent(student);
@@ -29,10 +33,7 @@ const Students = () => {
     <div className="students-container">
       <div className="students-header">
         <h2>Student Management</h2>
-        <Button
-          variant="primary"
-          onClick={() => setIsModalOpen(true)}
-        >
+        <Button variant="primary" onClick={handleAdd}>
           Add New Student
         </Button>
       </div>
@@ -44,10 +45,7 @@ const Students = () => {
         onClose={handleCloseModal}
         title={currentStudent ? 'Edit Student' : 'Add New Student'}
       >
-        <StudentForm
-          student={currentStudent}
-          onClose={handleCloseModal}
-        />
+        <StudentForm student={currentStudent} onClose={handleCloseModal} />
       </Modal>
     </div>
   );

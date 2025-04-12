@@ -1,6 +1,7 @@
 // client/src/components/common/LoadingSpinner/LoadingSpinner.jsx
-import React from 'react';
+
 import './LoadingSpinner.css';
+import PropTypes from 'prop-types';
 
 const LoadingSpinner = ({ fullPage = false }) => {
   return (
@@ -8,6 +9,9 @@ const LoadingSpinner = ({ fullPage = false }) => {
       <div className="loading-spinner"></div>
     </div>
   );
+};
+LoadingSpinner.propTypes = {
+  fullPage: PropTypes.bool,
 };
 
 export default LoadingSpinner;

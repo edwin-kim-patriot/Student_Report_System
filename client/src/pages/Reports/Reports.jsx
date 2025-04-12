@@ -1,5 +1,4 @@
-// client/src/pages/Reports/Reports.jsx
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import ReportTable from '../../components/ReportTable/ReportTable';
 import ReportForm from '../../components/ReportForm/ReportForm';
@@ -12,14 +11,14 @@ const Reports = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentReport, setCurrentReport] = useState(null);
 
-  const handleEdit = (report) => {
+  const openModal = (report = null) => {
     setCurrentReport(report);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const closeModal = () => {
     setCurrentReport(null);
+    setIsModalOpen(false);
   };
 
   if (loading) return <div className="loading">Loading reports...</div>;
@@ -27,27 +26,24 @@ const Reports = () => {
 
   return (
     <div className="reports-container">
-      <div className="reports-header">
+      <header className="reports-header">
         <h2>Report Management</h2>
-        <Button
-          variant="primary"
-          onClick={() => setIsModalOpen(true)}
-        >
+        <Button variant="primary" onClick={() => openModal()}>
           Generate New Report
         </Button>
-      </div>
+      </header>
 
-      <ReportTable reports={reports} students={students} onEdit={handleEdit} />
+      <ReportTable reports={reports} students={students} onEdit={openModal} />
 
       <Modal
         isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        onClose={closeModal}
         title={currentReport ? 'Edit Report' : 'Create New Report'}
       >
         <ReportForm
           report={currentReport}
           students={students}
-          onClose={handleCloseModal}
+          onClose={closeModal}
         />
       </Modal>
     </div>

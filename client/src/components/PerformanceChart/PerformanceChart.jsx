@@ -1,7 +1,8 @@
 // client/src/components/PerformanceChart/PerformanceChart.jsx
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './PerformanceChart.css';
+import PropTypes from 'prop-types';
 
 const PerformanceChart = ({ reports }) => {
   const chartRef = useRef(null);
@@ -71,6 +72,13 @@ const PerformanceChart = ({ reports }) => {
       <canvas ref={chartRef}></canvas>
     </div>
   );
+};
+PerformanceChart.propTypes = {
+  reports: PropTypes.arrayOf(
+    PropTypes.shape({
+      performance: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 export default PerformanceChart;

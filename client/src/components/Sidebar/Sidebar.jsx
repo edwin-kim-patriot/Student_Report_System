@@ -1,51 +1,42 @@
-// client/src/components/Sidebar/Sidebar.jsx
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
+
+const navLinks = [
+  { to: '/', label: 'Home', icon: 'icon-home', exact: true },
+  { to: '/dashboard', label: 'Dashboard', icon: 'icon-dashboard' },
+  { to: '/students', label: 'Students', icon: 'icon-students' },
+  { to: '/reports', label: 'Reports', icon: 'icon-reports' },
+  { to: '/settings', label: 'Settings', icon: 'icon-settings' }
+];
 
 const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <img src="/assets/logo.png" alt="School Logo" className="logo" />
+        <img src="/assets/logo.png" alt="Rehema School Logo" className="logo" />
         <h2>Report System</h2>
       </div>
+
       <nav className="sidebar-nav">
         <ul>
-          <li>
-            <NavLink to="/" exact activeClassName="active">
-              <i className="icon-home"></i>
-              <span>Home</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard" activeClassName="active">
-              <i className="icon-dashboard"></i>
-              <span>Dashboard</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/students" activeClassName="active">
-              <i className="icon-students"></i>
-              <span>Students</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/reports" activeClassName="active">
-              <i className="icon-reports"></i>
-              <span>Reports</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/settings" activeClassName="active">
-              <i className="icon-settings"></i>
-              <span>Settings</span>
-            </NavLink>
-          </li>
+          {navLinks.map(({ to, label, icon, exact }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                end={exact}
+                className={({ isActive }) => (isActive ? 'active' : '')}
+                aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+              >
+                <i className={icon}></i>
+                <span>{label}</span>
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
+
       <div className="sidebar-footer">
-        <p>© {new Date().getFullYear()} School System</p>
+        <p>© {new Date().getFullYear()} Rehema Junior School</p>
       </div>
     </aside>
   );

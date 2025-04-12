@@ -63,6 +63,16 @@ class Student {
       throw new Error('Failed to delete student');
     }
   }
+  static async findByAdmissionNumber(admissionNumber) {
+    try {
+      const { rows } = await db.query('SELECT * FROM students WHERE admission_number = $1', [admissionNumber]);
+      return rows[0];
+    } catch (error) {
+      console.error('Error fetching student by admission number:', error.message);
+      throw new Error('Failed to retrieve student by admission number');
+    }
+  }
+
 }
 
 export default Student;
